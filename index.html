@@ -58,6 +58,8 @@
 					    // .attr("cx", function(d, i){ return i * 70 + 90; })
 					    // .attr("cy", function(d){ return 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max); });
 					g.append("text")
+						.attr("dx", -12)
+						.attr("dy", 4)
 					    .text(function(d){return d.bookName;})
 					    // .attr("dx", function(d, i){ return i * 70 + 75; })
 					    // .attr("dy", function(d){ return 5 + 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max); });
