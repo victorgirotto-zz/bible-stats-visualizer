@@ -51,6 +51,9 @@
 					  	});
 					var circle = g.append("svg:circle")
 						.style("fill", "#188f7c")
+						.transition()
+						.duration(750)
+				    	.delay(function(d, i) { return i * 10; })
 					    .attr("r", radiusByVerb);
 					    // .attr("cx", function(d, i){ return i * 70 + 90; })
 					    // .attr("cy", function(d){ return 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max); });
