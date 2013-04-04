@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
-		<script src="datasource.js"></script>
 		<script>
 			var SVG_HEIGHT = 400;
 			var books;
@@ -22,7 +21,7 @@
 			        .attr("height", SVG_HEIGHT);
 
 				// Loading books
-				SOURCE.requestBooksInfo(function(data){
+				d3.json('data.json', function(data){
 					books = data;
 					// Getting stats on the data
 					var max = maxVerb = maxNoun = maxAdj = -1;			
