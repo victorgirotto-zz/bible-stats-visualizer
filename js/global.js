@@ -6,16 +6,16 @@ var CURRENT_RATIO = "verb";
 var CURRENT_ORDER = "traditional";
 var SVG_SPACE;
 var CIRCLE_COLOR = {
-	law : "#7a0512",
+	law : "#a00516",
 	history_old : "#be2700",
 	poetry :"#d95300",
 	major_profets : "#f79900",
 	minor_profets : "#ffe2b3",
-	gospels : "#16c1c8",
-	history_new: "#49cccc",
+	gospels : "#e1ecd6",
+	history_new: "#aee1d3",
 	letters_of_paul : "#7cd7cf",
-	general_letters : "#aee1d3",
-	prophecy : "#e1ecd6"
+	general_letters : "#44bfbf",
+	prophecy : "#16c1c8"
 };
 
 // Data

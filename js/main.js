@@ -3,6 +3,11 @@ $(function(){
 	/*****************
 	 * INITIAL SETUP *
 	 *****************/
+	// Setting up legends
+	$("#legend li").each(function(i, p){
+		var curr = $(this);
+		$("span", curr).css("background-color", CIRCLE_COLOR[curr.attr("id")]);
+	});
 
 	// Setting up viz space
 	SVG_SPACE = d3.select("#viz")

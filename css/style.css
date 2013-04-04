@@ -99,7 +99,7 @@ p {
 	border-right: dashed 1px #999;
 	float: left;
 	text-align: center;
-	background: rgba(255, 255, 255, 0.7);
+	background: url(../img/num-words.png) no-repeat right center rgba(255, 255, 255, 0.7);
 }
 
 #viz {
@@ -108,3 +108,33 @@ p {
 	padding-left: 200px;
 }
 
+#legend {
+	position: fixed;
+	top: 10px;
+	left: 250px;
+	font-size: 0.7em;
+}
+
+	#legend ul {
+		float: left;
+		margin-right: 10px;
+	}
+
+		#legend ul li {
+			display: inline-block;
+			position: relative;
+			line-height: 15px;
+			height: 15px;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+			#legend ul li span {
+				position: absolute;
+				display: inline-block;
+				width: 12px;
+				border-radius: 6px;
+				height: 80%;
+				background: red;
+				left: 0;
+			}
