@@ -71,12 +71,12 @@ h2 {
 
 a {
 	text-decoration: none;
-	color: #188f7c;
+	color: #999;
 	display: block;
 }
 
 a.active {
-	color: #c63d3e;
+	color: #67c8c7;
 }
 
 p {

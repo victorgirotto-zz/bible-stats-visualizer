@@ -27,7 +27,9 @@ $(function(){
 
 		// Creating circles
 		g.append("svg:circle")
-			.style("fill", CIRCLE_COLOR)
+			.style("fill", function(d){
+				return CIRCLE_COLOR[d.category];
+			})
 			.transition()
 			.duration(ANIM_DURATION)
 	    	.delay(function(d, i) { 
@@ -39,6 +41,7 @@ $(function(){
 		g.append("text")
 			.attr("dx", -12)
 			.attr("dy", 4)
+			// .attr("style", "fill:white;fill-opacity:1;stroke:black;stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.5;")
 		    .text(function(d){
 		    	return d.bookName;
 		    })
