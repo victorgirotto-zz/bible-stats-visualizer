@@ -6,129 +6,13 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="global.js"></script>
+		<script src="aux.js"></script>
+		<script src="main.js"></script>
+
 		<script>
-			var SVG_HEIGHT = 400;
-			var books;
-			var sampleSVG;
-			var currentRatio = "verb";
 
-			$(function(){
-
-				// Setting up viz space
-				sampleSVG = d3.select("#viz")
-			        .append("svg:svg")
-			        .attr("width", 4700)
-			        .attr("height", SVG_HEIGHT);
-
-				// Loading books
-				d3.json('data.json', function(data){
-					books = data;
-					// Getting stats on the data
-					var max = maxVerb = maxNoun = maxAdj = -1;			
-					var min = minVerb = minNoun = minAdj = Number.MAX_VALUE;
-					for(var i = 0; i < books.length; i++){
-						var book = books[i];
-						books[i].i = i;
-						// Max
-						if(book.wordsNum > max) max = book.wordsNum;
-						if(book.verbRatio > maxVerb) maxVerb = book.verbRatio;
-						if(book.nounRatio > maxNoun) maxNoun = book.nounRatio;
-						if(book.adjectiveRatio > maxAdj) maxAdj = book.adjectiveRatio;
-						// Min
-						if(book.wordsNum < min) min = book.wordsNum;
-						if(book.verbRatio < minVerb) minVerb = book.verbRatio;
-						if(book.nounRatio < minNoun) minNoun = book.nounRatio;
-						if(book.adjectiveRatio < minAdj) minAdj = book.adjectiveRatio;
-					}
-
-					// Setting up circles
-				 	var g = sampleSVG.selectAll("g")
-					  .data(books)
-					  .enter().append("g").attr("class", "node").attr("transform", function(d, i){
-					  		x = i * 70 + 90;
-					  		y = 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max);
-					  		return "translate(" + x + "," + y + ")";
-					  	});
-					var circle = g.append("svg:circle")
-						.style("fill", "#188f7c")
-						.transition()
-						.duration(750)
-				    	.delay(function(d, i) { return i * 10; })
-					    .attr("r", radiusByVerb);
-					    // .attr("cx", function(d, i){ return i * 70 + 90; })
-					    // .attr("cy", function(d){ return 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max); });
-					g.append("text")
-						.attr("dx", -12)
-						.attr("dy", 4)
-					    .text(function(d){return d.bookName;})
-					    // .attr("dx", function(d, i){ return i * 70 + 75; })
-					    // .attr("dy", function(d){ return 5 + 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max); });
-					
-
-					$("a.radius").click(function(){
-					$(".radius.active").toggleClass('active');
-					$(this).toggleClass('active');
-					var type = $(this).attr('id');
-					currentRatio = type;
-					sampleSVG.selectAll("circle")
-					.transition()
-				    .duration(750)
-				    .delay(function(d, i) { return i * 10; })
-					.attr("r", function(d){
-						if(type === "verb") {
-							return radiusByVerb(d);
-						} else if(type === "noun"){
-							return radiusByNoun(d);
-						} else {
-							return radiusByAdj(d);
-						}	
-					});
-				});
-
-				// Reordering
-				$("a.order").click(function(){
-					$(".order.active").toggleClass('active');
-					$(this).toggleClass('active');
-					var type = $(this).attr('id');
-					var circles = sampleSVG.selectAll("g");
-					circles.sort(function(a,b){
-						if(type === "traditional"){
-							return a.i - b.i;
-						} else {
-							if(currentRatio === "verb"){
-								return a.verbRatio - b.verbRatio;	
-							} else if(currentRatio === "noun"){
-								return a.nounRatio - b.nounRatio;	
-							} else {
-								return a.adjectiveRatio - b.adjectiveRatio;	
-							}
-						}
-					})
-					.transition()
-				    .duration(750)
-				    .delay(function(d, i) { return i * 10; })
-					.attr("transform", function(d, i){
-						x = i * 70 + 90;
-				  		y = 50 + (SVG_HEIGHT - 100) - ((SVG_HEIGHT - 100) * (d.wordsNum-min) / max);
-				  		return "translate(" + x + "," + y + ")";
-					});
-				});
-				});
-			 
-			});
-
-			function radiusBy(ratio, min, max){
-				return 5 + 60 * (ratio-min) / max;
-			}
-			function radiusByVerb(d){
-				return radiusBy(d.verbRatio, minVerb, maxVerb);
-			}
-			function radiusByNoun(d){
-				return radiusBy(d.nounRatio, minNoun, maxNoun);
-			}
-			function radiusByAdj(d){
-				return radiusBy(d.adjectiveRatio, minAdj, maxAdj);
-			}
+			
 
 		</script>
 	</head>
