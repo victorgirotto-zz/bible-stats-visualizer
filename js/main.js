@@ -70,13 +70,6 @@ $(function(){
 			.attr("r", function(d){
 				return changeRadius(d);	
 			});
-	});
-
-	// Reordering
-	$("a.order").click(function(){
-		toggleActiveClass(this, 'order');
-		CURRENT_ORDER = $(this).attr('id');
-		//
 		SVG_SPACE.selectAll("g")
 			.sort(function(a,b){
 				return sortCircles(a, b);
@@ -89,6 +82,13 @@ $(function(){
 			.attr("transform", function(d, i){
 				return translate(d, i);
 			});
+	});
+
+	// Reordering
+	$("a.order").click(function(){
+		toggleActiveClass(this, 'order');
+		CURRENT_ORDER = $(this).attr('id');
+		fullSort();
 	});
 
 });

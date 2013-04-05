@@ -39,6 +39,22 @@ function changeRadius(d){
 	}
 }
 
+function fullSort(){
+	// Entire Sort operation (animation)
+	SVG_SPACE.selectAll("g")
+		.sort(function(a,b){
+			return sortCircles(a, b);
+		})
+		.transition()
+	    .duration(ANIM_DURATION)
+	    .delay(function(d, i) { 
+	    	delay(i); 
+	    })
+		.attr("transform", function(d, i){
+			return translate(d, i);
+		});
+}
+
 function sortCircles(a, b){
 	if(CURRENT_ORDER === "traditional"){
 		return a.i - b.i;
